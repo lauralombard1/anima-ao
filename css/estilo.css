@@ -9,83 +9,90 @@ body {
     align-items: center;
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .letter-image {
+}
+
+.letter-image {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     margin-top: 2rem;
-  }
-  
-  /* posição e tamanho fixo */
-  .animated-mail {
+    display: flex; /* Adicionado para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* posição e tamanho fixo */
+.animated-mail {
     position: absolute; 
-    height: 150px;
-    width: 200px;
+    height: 250px;
+    width: 400px;
     transition: 1s; /* tempo */
-  }
-  
-  /* aba de baixo triangular */
-  .body {
+}
+
+/* aba de baixo triangular */
+.body {
     position: absolute;
     bottom: 0;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 0 100px 200px;
+    border-width: 0 0 200px 400px;
     border-color: transparent transparent #e95f55 transparent;
     z-index: 2;
-  }
-  
-  .top-fold {
+}
+
+/* aba */
+.top-fold {
     position: absolute;
     top: 50px;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 50px 100px 0 100px;
-    transform-origin: 50% 0%;
-    border-color: #cf4a43 transparent transparent transparent;
-    z-index: 2;
+    border-width: 100px 200px 0 200px; /* Ajuste a largura da aba */
+    transform-origin: 50% 0%; /* Centraliza a rotação */
+    border-color: #b343cf transparent transparent transparent;
+    z-index: 3;
     transition: transform 0.4s, z-index 0.2s;
-  }
-  
-  .back-fold {
+}
+
+/* parte de tras */
+.back-fold { 
     position: absolute;
     bottom: 0;
-    width: 200px;
-    height: 100px;
+    width: 400px;
+    height: 200px;
     background: #cf4a43;
     z-index: 0;
-  }
-  
-  .left-fold {
+}
+
+/* parte esquerda */
+.left-fold { 
     position: absolute;
     bottom: 0;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 50px 0 50px 100px;
+    border-width: 100px 0 100px 250px;
     border-color: transparent transparent transparent #e15349;
     z-index: 2;
-  }
-  
-  /* papel */
-  .letter {
-    left: 20px;
+}
+
+/* papel */
+.letter {
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta a posição para o centro */
     bottom: 0;
     position: absolute;
-    width: 160px;
-    height: 60px; /* Altura inicial fechado */
+    width: 260px;
+    height: 100px; /* Altura inicial fechado */
     background: white;
-    z-index: 1;
+    z-index: 1; /* camada */
     overflow: hidden;
     transition: 1s; /* tempo */
     border-radius: 4px;
-  }
-  
-  .letter-border {
+}
+
+.letter-border {
     height: 10px;
     width: 100%;
     background: repeating-linear-gradient(
@@ -95,25 +102,25 @@ body {
       transparent 8px,
       transparent 18px
     );
-  }
-  
-  .letter-title {
+}
+
+.letter-title {
     margin-top: 10px;
     margin-left: 5px;
     height: 10px;
     width: 40%;
     background: #cb5a5e;
-  }
-  
-  .letter-context {
+}
+
+.letter-context {
     margin-top: 10px;
     margin-left: 5px;
     height: 10px;
     width: 20%;
     background: #cb5a5e;
-  }
-  
-  .letter-stamp {
+}
+
+.letter-stamp {
     margin-top: 30px;
     margin-left: 120px;
     border-radius: 100%;
@@ -121,9 +128,9 @@ body {
     width: 30px;
     background: #cb5a5e;
     opacity: 0.3;
-  }
-  
-  .shadow {
+}
+
+.shadow {
     position: absolute;
     top: 200px;
     left: 50%;
@@ -133,12 +140,12 @@ body {
     border-radius: 100%;
     background: radial-gradient(rgba(0, 0, 0, 0.5), transparent);
     transition: 0.4s;
-  }
-  
-  /* --------------------------
-     BOTÃO COM CORAÇÕES
-  ----------------------------*/
-  .btn-heart {
+}
+
+/* --------------------------
+   BOTÃO COM CORAÇÕES
+----------------------------*/
+.btn-heart {
     background: linear-gradient(to right, #ff6699, #ff3366);
     color: white;
     padding: 15px 30px;
@@ -153,51 +160,56 @@ body {
     position: relative;
     display: inline-block;
     user-select: none;
-  }
-  
-  /* passar mouse por cima */
-  .btn-heart:hover {
+}
+
+/* passar mouse por cima */
+.btn-heart:hover {
     transform: translateY(-2px);
-  }
-  
-  /* sombra */
-  .btn-heart:active { 
+}
+
+/* sombra */
+.btn-heart:active { 
     transform: translateY(4px);
     box-shadow: 0 2px #b92c4c;
-  }
-  
-  /* texto levitando */
-  .btn-heart .hearts { 
+}
+
+/* texto levitando */
+.btn-heart .hearts { 
     display: block;
     margin-top: 5px;
     font-size: 1.1rem;
     animation: floatHearts 2s infinite ease-in-out;
-  }
-  @keyframes floatHearts {
+}
+@keyframes floatHearts {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-5px); }
     100% { transform: translateY(0); }
-  }
-  
-  /* --------------------------
-     LÓGICA DE ABRIR A CARTA
-  ----------------------------*/
-  
-  /* Se o checkbox estiver checado o envelope todo se move para baixo (como se a carta saísse de dentro) */
-  #abrir-carta:checked ~ .letter-image .animated-mail {
+}
+
+/* --------------------------
+   LÓGICA DE ABRIR A CARTA
+----------------------------*/
+
+/* Se o checkbox estiver checado o envelope todo se move para baixo (como se a carta saísse de dentro) */
+#abrir-carta:checked ~ .letter-image .animated-mail {
     transform: translateY(50px);
-  }
-  
-  /* A aba da carta gira para cima, simulando a abertura. */
-  #abrir-carta:checked ~ .letter-image .top-fold {
+}
+
+/* A aba da carta gira para cima, simulando a abertura. */
+#abrir-carta:checked ~ .letter-image .top-fold {
     transform: rotateX(180deg); 
     z-index: 0;
-  }
-  
-  /* a carta cresce verticalmente e sobe para fora do envelope. */
-  #abrir-carta:checked ~ .letter-image .letter {
+}
+
+/* a carta cresce verticalmente e sobe para fora do envelope. */
+#abrir-carta:checked ~ .letter-image .letter {
     height: 200px; /* aumenta o tamanho */
     bottom: 120px; /* levanta o papel */
     z-index: 10;
-  }
+}
+#tudo{
   
+    width: 50vw;
+    height: 50vh;
+    background-color: antiquewhite;
+}
