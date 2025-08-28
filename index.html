@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carta IFSP com Amor</title>
-  <link rel="stylesheet" href="css/estilo.css">
-</head>
-<body>
-  <!-- Checkbox escondido para controlar a carta --> 
-  <input type="checkbox" id="abrir-carta" hidden />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta IFSP com Amor</title>
+    <link rel="stylesheet" href="css/estilo.css">
+  </head>
+  <body>
+    <!-- Checkbox escondido para controlar a carta -->
+    <input type="checkbox" id="abrir-carta" hidden />
 
-  <div class="letter-image">
-    <div class="animated-mail"> <!-- compõe o visual do envelope e do papel, é esse bloco que se move quando a carta abre --> 
-      <div class="back-fold"></div> <!-- Parte de trás do envelope -->
-      <div class="letter"> <!-- papel da carta -->
-        <div class="letter-border"></div>
-        <div class="letter-title"></div>
-        <div class="letter-context"></div>
-        <div class="letter-stamp"></div>
+    <div class="letter-image">
+      <div class="animated-mail">
+        <!-- compõe o visual do envelope e do papel, é esse bloco que se move quando a carta abre -->
+        <div class="back-fold"></div> <!-- Parte de trás do envelope -->
+        <div class="letter"> <!-- papel da carta -->
+          <div class="letter-border"></div>
+          <div class="letter-title">
+            <h2>Convocação!</h2>
+            <p>Você foi convocado para estudar no IFSP campus Birigui!! </p>
+          </div>
+          
+          <div class="letter-stamp">
+            <img class="logo" src="img/images.png" alt>
+          </div>
+        </div>
+        <div class="top-fold"></div>
+        <!-- aba que se levanta para abrir a carta -->
+        <div class="body"></div>
+        <div class="left-fold"></div> <!-- aba lateral esquerda do envelope -->
       </div>
-      <div class="top-fold"></div> <!-- aba que se levanta para abrir a carta -->
-      <div class="body"></div>
-      <div class="left-fold"></div> <!-- aba lateral esquerda do envelope -->
+      <div class="shadow"></div>
     </div>
-    <div class="shadow"></div>
-  </div>
 
-  
+    
+    <div class="teste"></div>
+    
+    
 
-  <label for="abrir-carta" class="btn-heart">
-    <span class="hearts">
-      <p>clique-me</p>
-    </span>
-  </label>
+    <label for="abrir-carta" class="btn-heart">
+      <span class="hearts">
+        <p>clique-me</p>
+      </span>
+    </label>
 
-
-</body>
+  </body>
 </html>
