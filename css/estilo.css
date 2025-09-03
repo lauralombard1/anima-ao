@@ -1,7 +1,14 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: ;
+    background: linear-gradient(
+        to right,
+        #7b2ff7 0%, #7b2ff7 20%,
+        #f107a3 20%, #f107a3 40%,
+        #ffb347 40%, #ffb347 60%,
+        #47ff9f 60%, #47ff9f 80%,
+        #3446f7 80%, #3446f7 100%
+    );
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,7 +16,6 @@ body {
     align-items: center;
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #42df5c;
 }
 
 .letter-image {
@@ -20,7 +26,13 @@ body {
     display: flex; /* Adicionado para centralizar o conteúdo */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
+    animation: bounce 2s infinite alternate ease-in-out; /* animação da carta pulando */
 }
+
+@keyframes bounce {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+  }
 
 /* posição e tamanho fixo */
 .animated-mail {
@@ -39,7 +51,7 @@ body {
     height: 0;
     border-style: solid;
     border-width: 0 0 200px 400px;
-    border-color: transparent transparent #1ba031 transparent;
+    border-color: transparent transparent #a762df transparent;
     z-index: 2;
 }
 
@@ -52,7 +64,7 @@ body {
     border-style: solid;
     border-width: 100px 200px 0 200px; /* Ajuste a largura da aba */
     transform-origin: 50% 0%; /* Centraliza a rotação */
-    border-color: #127a23 transparent transparent transparent;
+    border-color: #8e40c9 transparent transparent transparent;
     z-index: 3;
     transition: transform 0.5s, z-index 0.2s;
 }
@@ -63,7 +75,7 @@ body {
     bottom: 0;
     width: 400px;
     height: 200px;
-    background: #127a23;
+    background: #8e40c9;
     z-index: 0;
 }
 
@@ -75,7 +87,7 @@ body {
     height: 0;
     border-style: solid;
     border-width: 100px 0 100px 201px;
-    border-color: transparent transparent transparent #17912b;
+    border-color: transparent transparent transparent #b87ee2;
     z-index: 2;
 }
 
@@ -124,28 +136,11 @@ body {
     width: 90%;
 }
 
-
-
-/*.letter-context {
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 0px;
-    width: 70%;
-}
-*/
-
+/* logo */
 .letter-stamp {
     height: 100%;
     width: 28%;
-    
-   /* margin-top: 0px;
-    margin-bottom: 100px;
-    margin-left: 160px;
-    height: 90px;
-    width: 50%;
-    background: #5acb8d;*/
 }
-
 
 
 .shadow {
@@ -164,22 +159,31 @@ body {
 /* --------------------------
    BOTÃO COM CORAÇÕES
 ----------------------------*/
+
 .btn-heart {
-    background: linear-gradient(to right, rgb(214, 21, 21), rgb(172, 18, 18));
+    background: linear-gradient(to right, #ff91f7, #9d2ed1); /* cores mais vibrantes */
     color: white;
     padding: 15px 30px;
     border-radius: 40px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     border: none;
     cursor: pointer;
-    box-shadow: 0 6px rgb(172, 18, 18);
+    box-shadow: 0 6px #8e40c9;
     transition: all 0.2s ease;
     text-align: center;
     position: relative;
     display: inline-block;
     user-select: none;
-}
+    animation: pulse 1.5s infinite; /* animação de pulsar */
+  }
+
+/* animação de pulsar */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
 
 /* passar mouse por cima */
 .btn-heart:hover {
@@ -234,31 +238,139 @@ body {
     background-color: antiquewhite;
 }
 
-/* professores */
-#abrir-carta:checked ~ .teste {
-    display: block;
-    align-items: flex-end;
-    flex-direction:column;
+
+  /* --------------------------
+   ESTRELAS BRILHANTES NO FUNDO
+----------------------------*/
+
+.stars-container {
     position: absolute;
-            
- }
-
-
-.teste{
-    display: none;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    
-    animation-name: cassio;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* para não atrapalhar clique */
+    overflow: hidden;
+    z-index: 0; /* atrás do envelope */
+  }
+  
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    box-shadow: 0 0 6px 2px white;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+  
+  .star:nth-child(odd) {
     animation-duration: 4s;
-    animation-iteration-count: infinite;
+    opacity: 1;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.2; }
+  }
+  
+  /* --------------------------
+     BOLHAS FLUTUANTES ANIMADAS
+  ----------------------------*/
+  
+  .bubbles-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
+  
+  .bubble {
+    position: absolute;
+    bottom: -20px;
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: floatUp 6s linear infinite;
+    filter: drop-shadow(0 0 2px #fff);
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(0.7);
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  /* Keroppi espiando por cima da carta */
+#espiando{
+    position: absolute;
+    top: 60px;
+    left: 38%;
+    transform: translateX(-50%);
+    width: 100px;
+    z-index: 10; /* acima da aba da carta */
+    animation: bounce 2s infinite ease-in-out;
 }
-      
-@keyframes cassio {
-    0%   { left:0px; top:0px;}
-    25%  { left:0px; top:0px;}
-    50%  { left:0px; top:0px;}
-    75%  { left:0px; top:0px;}
-    100% { left:0px; top:0px;} 
+
+/*keroppi desaparece*/
+#abrir-carta:checked ~ .letter-image #espiando {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+  /* Keroppi inferior esquerdo com pulinho */
+.canto-esquerdo {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    animation: jump 2s infinite ease-in-out;
+}
+
+/* Keroppi inferior direito dançando */
+.inferior-direito {
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    z-index: 2;
+    animation: dance 1.8s infinite ease-in-out;
+}
+
+/* Keroppi topo esquerdo flutuando */
+.topo-esquerdo {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 300px;
+    z-index: 2;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes dance {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
